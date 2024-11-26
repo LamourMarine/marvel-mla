@@ -1,0 +1,20 @@
+
+
+services:
+
+  db:
+    image: mysql
+    restart: always
+    command: --init-file /data/application/init.sql
+    volumes:
+        - ./database/Marvel.sql:/data/application/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
